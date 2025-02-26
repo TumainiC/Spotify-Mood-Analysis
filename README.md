@@ -50,21 +50,7 @@ Awesome! Let’s break this down step by step, from idea to implementation.
 - Use **OAuth 2.0** for authentication (users must grant access).  
 - Use Spotify’s **Get Recently Played Tracks** endpoint to fetch listening history.  
 
-**Example API Call (Python):**  
-```python
-import requests
 
-CLIENT_ID = "your_client_id"
-CLIENT_SECRET = "your_client_secret"
-TOKEN = "your_access_token"  # Retrieved via OAuth
-
-url = "https://api.spotify.com/v1/me/player/recently-played"
-headers = {"Authorization": f"Bearer {TOKEN}"}
-
-response = requests.get(url, headers=headers)
-data = response.json()
-print(data)  # This will show recently played songs
-```
 - Extract **track names, artists, timestamps, and audio features** (valence, energy, etc.).  
 - Store this data in **Microsoft Fabric (Data Factory + Synapse Analytics).**  
 
@@ -74,18 +60,6 @@ print(data)  # This will show recently played songs
 ### **✅ Get Lyrics & Run Sentiment Analysis**  
 - Use **Genius API** to fetch lyrics based on song title & artist.  
 - Apply NLP models (**VADER, TextBlob, or Transformer models**) to analyze sentiment.  
-
-**Example Sentiment Analysis (VADER):**  
-```python
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
-analyzer = SentimentIntensityAnalyzer()
-lyrics = "I'm feeling so blue today..."
-sentiment = analyzer.polarity_scores(lyrics)
-print(sentiment)  # Output: {'neg': 0.7, 'neu': 0.2, 'pos': 0.1, 'compound': -0.8}
-```
-- Combine **lyrics sentiment + Spotify valence score** to get **overall mood.**  
-- Classify into **Happy, Sad, Calm, Energetic, Neutral, etc.**  
 
 ---
 
@@ -118,5 +92,3 @@ print(sentiment)  # Output: {'neg': 0.7, 'neu': 0.2, 'pos': 0.1, 'compound': -0.
 
 ---
 
-### **Next Steps**  
-Would you like to start by setting up the **Spotify API** and fetching user listening history? 🚀
